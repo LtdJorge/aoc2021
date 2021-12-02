@@ -36,11 +36,19 @@ func main() {
 
 	file.Close()
 
+	var summedPoints []int
+
+	// Compute sliding window values
+	for i := 0; i < (len(points)-2); i++ {
+		newPoint := points[i] + points[i+1] + points[i+2]
+		summedPoints = append(summedPoints, newPoint)
+	}
+
 	// Calculate how many increases in depth there are
 	var	increases int
-	for i := 0; i < len(points); i++ {
+	for i := 0; i < len(summedPoints); i++ {
 		if i != 0 {
-			if points[i] > points[i-1] {
+			if summedPoints[i] > summedPoints[i-1] {
 				increases++
 			}
 		}
