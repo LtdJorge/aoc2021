@@ -15,7 +15,7 @@ type pair struct {
 }
 
 func main() {
-	var horizontal, depth int = 0, 0
+	var horizontal, depth, aim int = 0, 0, 0
 	forward := "forward"
 	down := "down"
 	up := "up"
@@ -30,10 +30,11 @@ func main() {
 		switch pair.instruction {
 		case forward:
 			horizontal += pair.value
+			depth += aim * pair.value
 		case up:
-			depth -= pair.value
+			aim -= pair.value
 		case down:
-			depth += pair.value
+			aim += pair.value
 		default:
 			log.Fatalf("Unable to parse pair: %s %d", pair.instruction, pair.value)
 		}
